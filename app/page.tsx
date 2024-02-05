@@ -2,43 +2,46 @@
 import React from 'react';
 import { 
   VStack, 
-  ChakraProvider,
-  Button,
-  Text
+  ChakraProvider, 
+  Text, 
+  Container, 
+  Divider
 } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
 import type { RootState } from './GlobalRedux/store';
-import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement, incrementByAmount } from './GlobalRedux/features/counter/counterSlice';
+import Header from '../components/Header';
 
 export default function Home() {
-  const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch = useDispatch();
+  const message = useSelector((state: RootState) => state.auth.message);
 
   return (
     <ChakraProvider>
-      <VStack spacing={20} align="stretch" mt={20}>
+      <Header />
+      <Container maxW="container.md" centerContent>
+        <VStack spacing={8} align="stretch" mt={10}>
 
-        <Button
-          onClick={() => dispatch(increment())}
-        >
-          Increment
-        </Button>
+          <Text textAlign='center' fontSize="2xl" color={'gray.200'} fontWeight="bold">
+            {message || 'Welcome! Set a message using the header.'}
+          </Text>
 
-        <Text>{count}</Text>
+          <Divider w="75%" alignSelf={'center'}></Divider>
 
-        <Button
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
-        </Button>
+          <Text fontSize="xl" color={'gray.200'}>The header component above exists as a separate folder in a separate directory from which the current page exists.</Text>
 
-        <Button
-          onClick={() => dispatch(incrementByAmount(2))}
-        >
-          Increment by 2
-        </Button>
+          <Text fontSize="xl" color={'gray.200'}>When you enter information into the header and submit it, that header will pass on its data onto any component with the help of react-redux.</Text>
 
-      </VStack>
+          <Text fontSize="xl" color={'gray.200'}>Under /app there is a directory called /GlobalRedux which is where global states are managed from.</Text>
+
+          <Text fontSize="xl" color={'gray.200'}>Within /GlobalRedux there is a /features folder which can contain subfolders of varying categories such as /auth /settings as well as any other subject that requires sharing across components.</Text>
+
+          <Text fontSize="xl" color={'gray.200'}>Each feature folder contains a slice file. In this case we are employing app/GlobalRedux/features/message/messageSlice.tsx which defines the reducer for the shared message slice.</Text>
+
+          <Text fontSize="xl" color={'gray.200'}>Lastly, under /GlobalRedux exists a provider.tsx file which is used to wrap the app in /app/layout.tsx.</Text>
+
+          <Text fontSize="xl" color={'gray.200'}>That message then gets dispatched from the header and selected from the current page.</Text>
+
+        </VStack>
+      </Container>
     </ChakraProvider>
   );
 }
