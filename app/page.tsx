@@ -40,6 +40,8 @@ export default function Home() {
 
           <Text fontSize="xl" color={'gray.200'}>That message then gets dispatched from the header and selected from the current page.</Text>
 
+          <Text fontSize="xl" color={'gray.200'}>All components using redux need to have 'use client'; on the first line of the file.</Text>
+
         </VStack>
       </Container>
     </ChakraProvider>
