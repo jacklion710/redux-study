@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <ChakraProvider>
       <Header />
-      <Container maxW="container.md" centerContent>
+      <Container backgroundColor={'gray.900'} maxW="container.md" centerContent>
         <VStack spacing={8} align="stretch" mt={10}>
 
           <Text textAlign='center' fontSize="2xl" color={'gray.200'} fontWeight="bold">
